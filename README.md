@@ -2,6 +2,19 @@
 
 Official implementation of **"CASCADE-VLM: A Zero-Shot Cascade Pipeline for CCTV Accident Understanding"** (CVPR 2026 ACCIDENT Challenge submission).
 
+## 🏆 Challenge Results
+
+**[ACCIDENT @ CVPR 2026 Challenge](https://www.kaggle.com/competitions/accident/overview)** (Zero-shot benchmark):
+
+| Leaderboard | Rank | ACCS |
+|---|---|---|
+| 🥇 **Public** | **1st** | **0.55478** |
+| 🥈 **Private** | **2nd** | **0.56293** |
+
+Achieved **without any training data** using a frozen Qwen3.5-27B model.
+
+---
+
 CASCADE-VLM is a zero-shot cascade pipeline that operates a frozen vision-language model (VLM) at three progressively finer spatio-temporal resolutions to predict (1) when an impact occurs, (2) where the first contact happens, and (3) which collision type is involved in CCTV footage — without using any real CCTV training labels.
 
 ## Key Features
@@ -12,7 +25,7 @@ CASCADE-VLM is a zero-shot cascade pipeline that operates a frozen vision-langua
 - **Scene-conditioned prompts**: CARLA-derived scene priors injected into type verification only
 - **~35 VLM calls per video**
 
-## Results
+## Detailed Results
 
 On the full ACCIDENT zero-shot split (2,027 real CCTV clips):
 
@@ -20,15 +33,15 @@ On the full ACCIDENT zero-shot split (2,027 real CCTV clips):
 |---|---|---|---|---|
 | Molmo-7B (single-frame) | 0.343 | 0.488 | 0.293 | 0.358 |
 | Qwen3.5-27B (single-frame) | 0.382 | 0.491 | 0.509 | 0.453 |
+| CASCADE-VLM (Coarse) | 0.566 | 0.341 | 0.546 | 0.459 |
+| CASCADE-VLM (Full) | 0.570 | 0.556 | 0.567 | 0.564 |
 | **CASCADE-VLM (Full+Scene)** | **0.568** | **0.555** | **0.595** | **0.572** |
-
-On the Kaggle private leaderboard: **0.578** without any training data.
 
 ## Installation
 
 ```bash
-git clone https://github.com/<your-username>/cascade-vlm.git
-cd cascade-vlm
+git clone https://github.com/kimsuckhyun/CASCADE-VLM-CCTV-Accident-Understanding.git
+cd CASCADE-VLM-CCTV-Accident-Understanding
 pip install -r requirements.txt
 ```
 
@@ -58,8 +71,8 @@ vllm serve Qwen/Qwen3.5-27B \
 python scripts/run_inference.py \
     --video-dir /path/to/cctv/videos \
     --metadata-csv /path/to/metadata.csv \
-    --submission-csv /path/to/submission_template.csv \
-    --output-csv /path/to/output_submission.csv
+    --submission-template /path/to/submission_template.csv \
+    --submission-out /path/to/output_submission.csv
 ```
 
 ### Run on a single video (programmatic)
@@ -146,6 +159,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-- ACCIDENT @ CVPR 2026 challenge organizers
+- [ACCIDENT @ CVPR 2026 Challenge](https://www.kaggle.com/competitions/accident/overview) organizers
 - Qwen3.5-27B by Alibaba
 - vLLM project for efficient inference
