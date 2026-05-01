@@ -1,0 +1,58 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Outputs
+output/
+outputs/
+results/
+submissions/
+*.mp4
+*.avi
+*.mov
+!examples/*.mp4
+
+# Cached
+.cache/
+*.pkl
+*.pt
+*.pth
+*.ckpt
+
+# Data (do not commit datasets)
+data/
+videos/
+metadata/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
